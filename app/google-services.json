@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "858190888007",
+    "project_id": "yogaclass-c2fb5",
+    "storage_bucket": "yogaclass-c2fb5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858190888007:android:22704243eb39930e608562",
+        "android_client_info": {
+          "package_name": "loki.edu.yogaclassadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVJtLtmFyERWXqcSitwFER7sjvYD-VfyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
