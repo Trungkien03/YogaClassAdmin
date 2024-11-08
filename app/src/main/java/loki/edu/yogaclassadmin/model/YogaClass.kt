@@ -5,6 +5,7 @@ data class YogaClass(
     val id: String = "",
     val title: String = "",
     val date: String = "",
+    val imageUrl: String? = null,
     val time: String = "",
     val capacity: Int = 0,
     val classType: String = "",

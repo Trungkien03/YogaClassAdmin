@@ -21,7 +21,6 @@ object NetworkUtils {
                 else -> false
             }
         } else {
-            // For devices below API 23
             val networkInfo = connectivityManager.activeNetworkInfo
             return networkInfo != null && networkInfo.isConnected
         }

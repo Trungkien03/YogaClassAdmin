@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "loki.edu.yogaclassadmin"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "loki.edu.yogaclassadmin"
@@ -55,8 +55,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.retrofit)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.converter.gson)
-    implementation(libs.glide)
+    implementation(libs.gson)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    implementation(libs.google.firebase.auth.ktx)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.firebase.firestore.ktx)
@@ -64,6 +71,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

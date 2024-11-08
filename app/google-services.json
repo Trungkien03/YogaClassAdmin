@@ -12,7 +12,20 @@
           "package_name": "loki.edu.yogaclassadmin"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "858190888007-g11mer46389vmtcd7mr186g130ptu69m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "loki.edu.yogaclassadmin",
+            "certificate_hash": "9b98f26032064cb99984ec6d7f5cddfe21714d8c"
+          }
+        },
+        {
+          "client_id": "858190888007-jg7spdk3dd6guubt1b5du5j8abjuiuuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCVJtLtmFyERWXqcSitwFER7sjvYD-VfyY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858190888007-jg7spdk3dd6guubt1b5du5j8abjuiuuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
