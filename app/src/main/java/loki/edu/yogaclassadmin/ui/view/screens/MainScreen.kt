@@ -1,5 +1,6 @@
 package loki.edu.yogaclassadmin.ui.view.screens
 
+import ProfileScreen
 import YogaClassListScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -9,16 +10,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import loki.edu.yogaclassadmin.model.YogaClass
 import loki.edu.yogaclassadmin.ui.navigation.BottomNavItem
 import loki.edu.yogaclassadmin.ui.navigation.BottomNavigationBar
 import loki.edu.yogaclassadmin.ui.view.bottomtabs.InstanceScreen
-import loki.edu.yogaclassadmin.ui.view.bottomtabs.ProfileScreen
 
 @Composable
-fun MainScreen(navController1: NavHostController) {
+fun MainScreen(
+    navController1: NavHostController,
+    appState: AppStateViewModel
+) {
     val navController = rememberNavController()
-
 
     Scaffold(
         bottomBar = { BottomNavigationBar(navController = navController) }
@@ -30,7 +31,7 @@ fun MainScreen(navController1: NavHostController) {
         ) {
             composable(BottomNavItem.YogaClass.route) { YogaClassListScreen(navController1) }
             composable(BottomNavItem.Instance.route) { InstanceScreen() }
-            composable(BottomNavItem.Profile.route) { ProfileScreen() }
+            composable(BottomNavItem.Profile.route) { ProfileScreen( navController1, appState) }
         }
     }
 }

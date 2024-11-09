@@ -43,7 +43,6 @@ fun LoginScreen(navController: NavController) {
     val email = viewModel.email
     val password = viewModel.password
     val passwordVisible = viewModel.passwordVisible
-    val showDialog = viewModel.showDialog
     val isLoading = viewModel.isLoading
     val errorMessage = viewModel.errorMessage.value
     val focusManager = LocalFocusManager.current

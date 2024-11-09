@@ -25,28 +25,29 @@ fun YogaClassListScreen(
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Yoga Classes",
-                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
-                    )
-                },
-                actions = {
-                    IconButton(onClick = { showDialog = true }) {
-                        Icon(imageVector = Icons.Default.Add, contentDescription = "Add New")
-                    }
-                }
-            )
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { showDialog = true },
+                containerColor = Color(0xFF4CAF50), // Green color to match your theme
+                contentColor = Color.White,
+                modifier = Modifier.size(56.dp)
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add New Class")
+            }
         }
     ) { paddingValues ->
         Column(
             modifier = Modifier
-                .padding(paddingValues) // Sử dụng paddingValues ở đây
-                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(horizontal = 10.dp)
+                .fillMaxSize(),
+
         ) {
-            // Nội dung bên trong Column
+            Text(
+                text = "Yoga Classes",
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
             if (isLoading) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -76,7 +77,6 @@ fun YogaClassListScreen(
                         )
                     }
                 }
-
             }
         }
     }
@@ -102,3 +102,4 @@ fun YogaClassListScreen(
         )
     }
 }
+

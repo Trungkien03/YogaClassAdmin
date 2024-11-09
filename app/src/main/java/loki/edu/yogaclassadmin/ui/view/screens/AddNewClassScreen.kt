@@ -1,5 +1,4 @@
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -17,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import loki.edu.yogaclassadmin.ui.view.components.BackButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,9 +32,7 @@ fun AddNewClassScreen(navController: NavController) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
-                    }
+                    BackButton(navController)
                 }
             )
         }
@@ -50,7 +48,6 @@ fun AddNewClassScreen(navController: NavController) {
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
-            // Thêm nội dung của màn hình ở đây (ví dụ: các trường nhập thông tin cho lớp học mới)
         }
     }
 }

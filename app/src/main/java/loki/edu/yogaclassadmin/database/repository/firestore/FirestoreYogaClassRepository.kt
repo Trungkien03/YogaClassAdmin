@@ -55,14 +55,18 @@ class FirestoreYogaClassRepository {
         }
     }
 
-    // Lấy tất cả các ClassType từ Firestore với callback
-    fun getClassTypes(onSuccess: (List<ClassType>) -> Unit, onFailure: (Exception) -> Unit) {
-        classTypesCollection.get()
-            .addOnSuccessListener { querySnapshot ->
-                val classTypes = querySnapshot.toObjects(ClassType::class.java)
-                onSuccess(classTypes)
-            }
-            .addOnFailureListener { onFailure(it) }
+
+    suspend fun getClassTypeById(classTypeId: String): ClassType? {
+        return try {
+            val document = classTypesCollection
+                .whereEqualTo("id", classTypeId)
+                .get()
+                .await()
+            document.documents.firstOrNull()?.toObject(ClassType::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
     // Hàm để lấy YogaClass theo ID

@@ -16,12 +16,10 @@ class LoginViewModel : ViewModel() {
     val password = mutableStateOf("")
 
     private val _stateGoogleSign = MutableStateFlow(SignInState())
-    val stateGoogleSign = _stateGoogleSign.asStateFlow()
 
     val passwordVisible = mutableStateOf(false)
-    val showDialog = mutableStateOf(false)
-    val isLoading = mutableStateOf(false) // State để biểu thị trạng thái loading
-    val currentUser = mutableStateOf<User?>(null) // State để lưu thông tin người dùng
+    val isLoading = mutableStateOf(false)
+    val currentUser = mutableStateOf<User?>(null)
     val errorMessage = mutableStateOf("")
 
     fun setErrorMessage(message: String) {
@@ -55,7 +53,6 @@ class LoginViewModel : ViewModel() {
             isLoading.value = false
             if (!isAuthenticated) {
                 errorMessage.value = "Invalid email or password."
-                showDialog.value = true
                 onResult(false)
             } else {
                 val user = userRepository.getUserByEmail(email.value)
@@ -81,7 +78,7 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    private fun checkUserInDatabaseAfterGoogleSignIn(email: String,onResult: (Boolean) -> Unit) {
+     fun checkUserInDatabaseAfterGoogleSignIn(email: String,onResult: (Boolean) -> Unit) {
         isLoading.value = true // Bắt đầu loading
         viewModelScope.launch {
             val user = userRepository.getUserByEmail(email)

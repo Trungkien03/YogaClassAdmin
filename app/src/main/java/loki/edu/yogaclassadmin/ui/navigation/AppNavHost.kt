@@ -5,7 +5,9 @@ import AddNewClassScreen
 import YogaClassDetailScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -35,14 +37,30 @@ sealed class NavigationItem(val route: String) {
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = NavigationItem.Login.route
+    startDestination: String = NavigationItem.Login.route,
+    appStateViewModel: AppStateViewModel = viewModel(),
+    loginViewModel: LoginViewModel = viewModel()
 ) {
     val currentUser = FirebaseAuth.getInstance().currentUser
+    val coroutineScope = rememberCoroutineScope()
 
+    // Triggered when the currentUser changes
     LaunchedEffect(currentUser) {
         if (currentUser != null) {
-            navController.navigate(NavigationItem.Home.route) {
-                popUpTo(NavigationItem.Login.route) { inclusive = true }
+            // After Google Sign-In, check if the user exists in the database
+            loginViewModel.checkUserInDatabaseAfterGoogleSignIn(currentUser.email ?: "") { userExists ->
+                if (userExists) {
+                    loginViewModel.currentUser.value?.let { user ->
+                        appStateViewModel.setUserLoggedIn(user)
+                    }
+                    navController.navigate(NavigationItem.Home.route) {
+                        popUpTo(NavigationItem.Login.route) { inclusive = true }
+                    }
+                } else {
+                    navController.navigate(NavigationItem.Login.route) {
+                        popUpTo(NavigationItem.Home.route) { inclusive = true }
+                    }
+                }
             }
         } else {
             navController.navigate(NavigationItem.Login.route) {
@@ -60,7 +78,7 @@ fun AppNavHost(
             LoginScreen(navController)
         }
         composable(NavigationItem.Home.route) {
-            MainScreen(navController)
+            MainScreen(navController, appStateViewModel)
         }
         composable(NavigationItem.AddNewClass.route) {
             AddNewClassScreen(navController)
@@ -76,4 +94,3 @@ fun AppNavHost(
         }
     }
 }
-
